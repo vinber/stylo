@@ -66,12 +66,16 @@ type Article {
   title: String
   zoteroLink: String
   owner: User
+  # remove?
   contributors: [ArticleContributor]!
   workingVersion: WorkingVersion
   versions(limit: Int, page: Int): [Version!]!
   tags(limit: Int, page: Int): [Tag!]!
   createdAt: String
   updatedAt: String
+
+  groups: [Group!]
+  members: [User!]
 }
 
 type ArticleContributor {
@@ -93,6 +97,47 @@ input VersionInput {
   article: ID!
   major: Boolean
   message: String
+}
+
+type ArticleWithinGroup {
+  group: Group!
+  article: Article
+  
+  # mutation
+  remove: Group!
+}
+
+type MemberWithinGroup {
+  group: Group!
+  user: User
+
+  # mutation
+  remove: Group!
+}
+
+type Group {
+  _id: String!
+  name: String!
+  color: String!
+  members: [User!]!
+  articles: [Article!]!
+  creator: User!
+  createdAt: String
+  updatedAt: String
+
+  article(articleId: ID!): ArticleWithinGroup
+  member(userId: ID!): MemberWithinGroup
+
+  # mutations
+  leave: Group
+  inviteMember(userId: ID!): Group
+  addArticle(articleId: ID!): Group
+}
+
+"Input to create a new group"
+input CreateGroupInput {
+  name: String!
+  color: String!
 }
 
 type Query {
@@ -119,6 +164,12 @@ type Query {
 
   "Fetch version info"
   version(version: ID!): Version
+
+  "Get a given group"
+  group(groupId: ID!): Group
+
+  "Get groups for a given user"
+  groups(userId: ID): [Group!]
 }
 
 type Mutation {
@@ -213,6 +264,12 @@ type Mutation {
 
   "Remove from owners"
   deleteArticle(article: ID!, user: ID!): Article
+
+  "Create a new group"
+  createGroup(createGroupInput: CreateGroupInput!): Group
+
+  "Get a group for mutation"
+  group(groupId: ID!): Group
 }`
 
 module.exports = makeExecutableSchema({ typeDefs, resolvers })

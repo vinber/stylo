@@ -1,0 +1,44 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="start graphql" type="js.build_tools.npm">
+    <package-json value="$PROJECT_DIR$/graphql/package.json" />
+    <command value="run" />
+    <scripts>
+      <script value="start" />
+    </scripts>
+    <node-interpreter value="project" />
+    <envs>
+      <env name="ALLOW_CORS_FRONTEND" value="http://localhost:3000" />
+      <env name="EXPORT_CANONICAL_BASE_URL" value="http://localhost:3060" />
+      <env name="HTTPS" value="false" />
+      <env name="JWT_SECRET_SESSION" value="DidITellYouHowMuchYouShouldChangeMe?" />
+      <env name="JWT_SECRET_SESSION_COOKIE" value="NoNoNoReallyIInsistYouShouldChangeMe" />
+      <env name="JWT_SECRET_TOKEN" value="SuperSecureButYouShouldChangeMe" />
+      <env name="MONGO_SERVER" value="localhost" />
+      <env name="MONGO_SERVER_DB" value="graphql" />
+      <env name="MONGO_SERVER_PORT" value="27017" />
+      <env name="OPENID_CONNECT_AUTH_URL" value="https://auth-test.huma-num.fr/oauth2/authorize" />
+      <env name="OPENID_CONNECT_CALLBACK_URL" value="http://localhost:3030/authorization-code/callback" />
+      <env name="OPENID_CONNECT_CLIENT_ID" value="rp-stylo-hn" />
+      <env name="OPENID_CONNECT_CLIENT_SECRET" value="&quot;Ea&gt;xH(E=2DZr&quot;" />
+      <env name="OPENID_CONNECT_ISSUER" value="https://auth-test.huma-num.fr" />
+      <env name="OPENID_CONNECT_NAME" value="HumanID" />
+      <env name="OPENID_CONNECT_TOKEN_URL" value="https://auth-test.huma-num.fr/oauth2/token" />
+      <env name="OPENID_CONNECT_USER_INFO_URL" value="https://auth-test.huma-num.fr/oauth2/userinfo" />
+      <env name="SESSION_SECRET" value="aNotSoSecureSessionSecret!" />
+      <env name="SNOWPACK_MATOMO_SITE_ID" value="0" />
+      <env name="SNOWPACK_MATOMO_URL" value="https://example.matomo.cloud/" />
+      <env name="SNOWPACK_PUBLIC_BACKEND_ENDPOINT" value="http://localhost:3030" />
+      <env name="SNOWPACK_PUBLIC_EXPORT_ENDPOINT" value="http://localhost:3060" />
+      <env name="SNOWPACK_PUBLIC_GRAPHQL_ENDPOINT" value="http://localhost:3030/graphql" />
+      <env name="SNOWPACK_PUBLIC_HUMAN_ID_REGISTER_ENDPOINT" value="https://auth-test.huma-num.fr/register?service=http://localhost:3030/authorization-code/callback" />
+      <env name="SNOWPACK_PUBLIC_PROCESS_ENDPOINT" value="https://stylo-export.ecrituresnumeriques.ca" />
+      <env name="ZOTERO_ACCESS_TOKEN_ENDPOINT" value="https://www.zotero.org/oauth/access" />
+      <env name="ZOTERO_AUTH_CALLBACK_URL" value="http://localhost:3030/authorization-code/zotero/callback" />
+      <env name="ZOTERO_AUTH_CLIENT_KEY" value="&quot;...&quot;" />
+      <env name="ZOTERO_AUTH_CLIENT_SECRET" value="&quot;...&quot;" />
+      <env name="ZOTERO_AUTHORIZE_ENDPOINT" value="https://www.zotero.org/oauth/authorize" />
+      <env name="ZOTERO_REQUEST_TOKEN_ENDPOINT" value="https://www.zotero.org/oauth/request" />
+    </envs>
+    <method v="2" />
+  </configuration>
+</component>

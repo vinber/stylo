@@ -1,11 +1,12 @@
 const defaultsData = require('../data/defaultsData')
 
-const Article = require('../models/article');
-const User = require('../models/user');
-const Tag = require('../models/tag');
+const Article = require('../models/article')
+const User = require('../models/user')
+const Tag = require('../models/tag')
+const Group = require('../models/group')
 
 const isUser = require('../policies/isUser')
-const { ApiError } = require('../helpers/errors');
+const { ApiError } = require('../helpers/errors')
 
 module.exports = {
   Mutation: {
@@ -340,6 +341,26 @@ module.exports = {
   },
 
   Article: {
+    async groups (article) {
+      return Group.find({
+        articles: article._id
+      })
+    },
+
+    async members (article) {
+      const result = await Group.aggregate([
+        { $match: { articles: article._id } },
+        { $unwind: '$members' }, {
+          $group: {
+            _id: null,
+            memberIds: { $addToSet: '$members' }
+          }
+        },
+        { $lookup: { from: 'users', localField: 'memberIds', foreignField: '_id', as: 'members' } }
+      ])
+      return result[0].members
+    },
+
     async versions (article, { limit }) {
       await article
         .populate({

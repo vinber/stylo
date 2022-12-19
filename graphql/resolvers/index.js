@@ -2,6 +2,7 @@ const { User, Query: UserQuery, Mutation: UserMutation } = require('./userResolv
 const { Article, Query: ArticleQuery, Mutation: ArticleMutation } = require('./articleResolver')
 const { Tag, Query: TagQuery, Mutation: TagMutation } = require('./tagResolver')
 const { Version, Query: VersionQuery, Mutation: VersionMutation } = require('./versionResolver')
+const { Group, Query: GroupQuery, Mutation: GroupMutation } = require('./groupResolver')
 const { Mutation: AuthMutation } = require('./authResolver')
 
 module.exports = {
@@ -9,11 +10,13 @@ module.exports = {
   Article,
   Tag,
   Version,
+  Group,
   Query: {
     ...UserQuery,
     ...ArticleQuery,
     ...TagQuery,
     ...VersionQuery,
+    ...GroupQuery,
   },
   Mutation: {
     ...UserMutation,
@@ -21,5 +24,6 @@ module.exports = {
     ...TagMutation,
     ...VersionMutation,
     ...AuthMutation,
+    ...GroupMutation,
   }
 }
